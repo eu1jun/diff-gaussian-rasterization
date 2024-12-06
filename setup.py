@@ -20,8 +20,11 @@ setup(
             extra_compile_args={
                 "cxx": ["-std=c++17"],
                 "nvcc": [
+                    "-Xcompiler", "-fno-gnu-unique",
                     "-I" + os.path.join(os.path.dirname(os.path.abspath(__file__)), "third_party/glm/"),
                     "-I" + glm_local_path,  # Use expanded home directory
+                    "-gencode", "arch=compute_75,code=sm_75",
+                    "-lineinfo"
                 ]
             })
     ],
